@@ -1,28 +1,8 @@
-FROM alpine:3.13 as builder
+FROM buildpack-deps:buster
 
-RUN apk update && \
-    apk add \
-        curl \
-        xz
+RUN curl https://ziglang.org/builds/zig-linux-x86_64-0.11.0-dev.2401+348751462.tar.xz -O && \
+    tar xvf zig-linux-x86_64-0.11.0-dev.2401+348751462.tar.xz
 
-ARG ZIGVER
-RUN mkdir -p /deps
-WORKDIR /deps
-RUN curl https://ziglang.org/deps/zig+llvm+lld+clang-$(uname -m)-linux-musl-$ZIGVER.tar.xz  -O && \
-    tar xf zig+llvm+lld+clang-$(uname -m)-linux-musl-$ZIGVER.tar.xz && \
-    mv zig+llvm+lld+clang-$(uname -m)-linux-musl-$ZIGVER/ local/
-    
-FROM alpine:3.13
-RUN apk --no-cache add \
-      libc-dev \
-      xz \
-      samurai \
-      git \
-      cmake \
-      py3-pip \
-      perl-utils \
-      jq \
-      curl && \
-    pip3 install s3cmd
+ENV PATH="${PATH}:/zig-linux-x86_64-0.11.0-dev.2401+348751462"
 
-COPY --from=builder /deps/local/ /deps/local/
+WORKDIR /code
