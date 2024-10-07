@@ -3,8 +3,21 @@ const expect = std.testing.expect;
 const assert = std.debug.assert;
 const mem = std.mem;
 
+
+
+
+
+
+
+
 const message = [_]u8{ 'h', 'e', 'l', 'l', 'o' };
 const same_massage = "hello";
+
+
+
+
+
+
 
 comptime {
     assert(message.len == 5);
