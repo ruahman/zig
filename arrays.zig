@@ -6,10 +6,6 @@ const mem = std.mem;
 
 
 
-
-
-
-
 const message = [_]u8{ 'h', 'e', 'l', 'l', 'o' };
 const same_massage = "hello";
 
