@@ -1,29 +1,19 @@
 const std = @import("std");
-const @"an identifier with spaces in it" = 0xff;
-const @"oneSmallStepForMan" = 123;
-const c = std.c;
-const print = std.debug.print;
-const expect = std.testing.expect;
 
-pub extern "c" fn @"error"() void;
-pub extern "c" fn @"fstat$INODE64"(fd: c.fd_t, bug: *c.stat) c_int;
-
-const Color = enum { red, @"really red" };
-
-const color: Color = .@"really red";
+const maxitems = 100;
+const age: u32 = 25;
 
 pub fn main() void {
-    print("whatever {s}\n", .{"what"});
-}
+    var count: i32 = 0;
+    count += 1;
+    const height: f32 = 5.9;
+    const isStudent: bool = true;
+    const letter: u8 = 'A';
 
-var y: i32 = add(10, x);
-const x: i32 = add(12, 34);
-
-test "container level" {
-    try expect(x == 46);
-    try expect(y == 56);
-}
-
-fn add(a: i32, b: i32) i32 {
-    return a + b;
+    std.debug.print("count: {}\n", .{count});
+    std.debug.print("maxitems: {}\n", .{maxitems});
+    std.debug.print("age: {}\n", .{age});
+    std.debug.print("height: {}\n", .{height});
+    std.debug.print("isStudent: {}\n", .{isStudent});
+    std.debug.print("A: {}\n", .{letter});
 }

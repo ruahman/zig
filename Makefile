@@ -1,4 +1,3 @@
-
 build:
 	zig build-exe $(f)
 
@@ -8,7 +7,5 @@ run:
 test:
 	zig test $(t)
 
-clean:
-	- rm main main.o main.exe main.pdb main.exe.obj
-
+.PHONEY: build run test
 
