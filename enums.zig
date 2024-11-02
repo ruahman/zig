@@ -1,4 +1,4 @@
-const expect = @import("std").testing.expect;
+const print = @import("std").debug.print;
 
 const Type = enum {
     ok,
@@ -13,8 +13,9 @@ const Color = enum {
     off,
 };
 
-test "enum literals" {
+pub fn main() void {
     const c1: Color = .auto;
     const c2: Color = .on;
-    try expect(c1 != c2);
+    print("c1: {}\n", .{c1});
+    print("c2: {}\n", .{c2});
 }
