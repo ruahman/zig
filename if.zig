@@ -1,14 +1,14 @@
 const std = @import("std");
-const print = std.debug.print;
+const expect = std.testing.expect;
 
-const score = 85;
-
-pub fn main() void {
-    if (score >= 90) {
-        print("Grade A\n", .{});
-    } else if (score >= 80) {
-        print("Grade B\n", .{});
+test "if statement" {
+    const a = true;
+    var x: u16 = 0;
+    if (a) {
+        x += 1;
     } else {
-        print("Grade C", .{});
+        x += 2;
     }
+    try expect(x == 1);
+    std.debug.print("if statements work\n", .{});
 }

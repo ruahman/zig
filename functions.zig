@@ -1,3 +1,7 @@
+//! this is a top level comment comment
+//!
+//!
+
 const std = @import("std");
 const print = std.debug.print;
 
@@ -41,6 +45,11 @@ fn applyOperation(a: i32, b: i32, operation: fn (i32, i32) i32) i32 {
     return operation(a, b);
 }
 
+/// this is a document comment: public functions can be exported and used by other files
+pub fn addNumbers(num1: u8, num2: u8) u16 {
+    return num1 + num2;
+}
+
 pub fn main() void {
     const result = add(2, 3);
     print("result: {}\n", .{result});
@@ -73,4 +82,16 @@ pub fn main() void {
 
     const res3 = multiply.call(3, 2);
     print("res3: {}\n", .{res3});
+
+    const number1: u8 = 5;
+    var number2: u8 = 10;
+    number2 = 15;
+
+    // arguments is a string, and a tuple of variables
+    @import("std").debug.print("number1: {}, number2: {}\n", .{ number1, number2 });
+
+    // you can create a new type with const
+    const Unsigned16BitInteger = u16;
+    const sum_of_integers: Unsigned16BitInteger = addNumbers(number1, number2);
+    _ = sum_of_integers;
 }
