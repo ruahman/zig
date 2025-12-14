@@ -1,14 +1,13 @@
-set positional-arguments
 
 flake:
   nix develop
 
 build arg:
-	zig build-exe $1
+	zig build-exe {{arg}}
 
 run arg:
-	zig run $1
+	zig run {{arg}}
 
 test arg:
-	zig test $1
+	zig test {{arg}}
 
