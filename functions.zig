@@ -4,11 +4,13 @@
 
 const std = @import("std");
 const expect = std.testing.expect;
+const hellow = @import("./import_func.zig").hellow;
 
 const print = std.debug.print;
 
-fn add(a: i32, b: i32) i32 {
-    return a + b;
+/// this is a document comment: public functions can be exported and used by other files
+pub fn addNumbers(num1: u8, num2: u8) u16 {
+    return num1 + num2;
 }
 
 fn greet() void {
@@ -43,64 +45,40 @@ fn greet_args(args: GreatArgs) void {
     }
 }
 
-fn applyOperation(a: i32, b: i32, operation: fn (i32, i32) i32) i32 {
+fn applyOperation(a: u8, b: u8, operation: fn (u8, u8) u16) i32 {
     return operation(a, b);
 }
 
-/// this is a document comment: public functions can be exported and used by other files
-pub fn addNumbers(num1: u8, num2: u8) u16 {
-    return num1 + num2;
-}
+const multiply = struct {
+    fn call(a: i32, b: i32) i32 {
+        return a * b;
+    }
+};
 
-test "test addNumbers" {
-    const res = addNumbers(2, 3);
-    print("res: {}\n", .{res});
+test "test functions" {
+    const resAddNumbers = addNumbers(2, 3);
+    print("resAddNumbers: {}\n", .{resAddNumbers});
+    greet();
+    greet_name("Diego");
+    const resSquare = square(2);
+    print("resSquare: {}\n", .{resSquare});
+    const value = divide(10, 2);
+    if (value) |val| {
+        print("value: {}\n", .{val});
+    } else |err| {
+        print("err: {}\n", .{err});
+    }
+    greet_args(.{ .name = "Diego", .age = 43 });
+    greet_args(.{ .name = "Andy" });
+    const applyRes = applyOperation(2, 3, addNumbers);
+    print("applyRes: {}\n", .{applyRes});
+    const res3 = multiply.call(3, 2);
+    print("res3: {}\n", .{res3});
+
+    hellow();
 }
 
 pub fn main() void {
     print("this program shows how functions work in zig\n", .{});
     print("to see the tests for functions run `zig test functions.zig`\n", .{});
-    // const result = add(2, 3);
-    // print("result: {}\n", .{result});
-    // greet();
-    // greet_name("Diego");
-    // const res2 = square(2);
-    // print("res2: {}\n", .{res2});
-    // const value = divide(10, 2);
-    // if (value) |val| {
-    //     print("value: {}\n", .{val});
-    // } else |err| {
-    //     print("err: {}\n", .{err});
-    // }
-    // const value2 = divide(10, 0);
-    // if (value2) |val| {
-    //     print("value2: {}\n", .{val});
-    // } else |err| {
-    //     print("err: {}\n", .{err});
-    // }
-    // greet_args(.{ .name = "Diego", .age = 43 });
-    // greet_args(.{ .name = "Andy" });
-    // const applyRes = applyOperation(2, 3, add);
-    // print("applyRes: {}\n", .{applyRes});
-    //
-    // const multiply = struct {
-    //     fn call(a: i32, b: i32) i32 {
-    //         return a * b;
-    //     }
-    // };
-    //
-    // const res3 = multiply.call(3, 2);
-    // print("res3: {}\n", .{res3});
-    //
-    // const number1: u8 = 5;
-    // var number2: u8 = 10;
-    // number2 = 15;
-    //
-    // // arguments is a string, and a tuple of variables
-    // @import("std").debug.print("number1: {}, number2: {}\n", .{ number1, number2 });
-    //
-    // // you can create a new type with const
-    // const Unsigned16BitInteger = u16;
-    // const sum_of_integers: Unsigned16BitInteger = addNumbers(number1, number2);
-    // _ = sum_of_integers;
 }

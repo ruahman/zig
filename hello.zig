@@ -1,6 +1,10 @@
 const std = @import("std");
 
-pub fn main() void {
+fn sumOfTwo(a: i32, b: i32) i32 {
+    return a + b;
+}
+
+test "hello" {
     var v: u32 = 5000;
     v = 5555;
     const res = sumOfTwo(10, 5);
@@ -10,6 +14,6 @@ pub fn main() void {
     std.debug.print("hello {s} {} {} {} {s}\n", .{ "world", res, v, infer, string });
 }
 
-fn sumOfTwo(a: i32, b: i32) i32 {
-    return a + b;
+pub fn main() void {
+    std.debug.print("run test `zig test hello.zig`", .{});
 }

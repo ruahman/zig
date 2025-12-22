@@ -1,5 +1,7 @@
 const print = @import("std").debug.print;
 
+const Direction = enum { up, down, left, right };
+
 const Type = enum {
     ok,
     not_ok,
@@ -13,7 +15,7 @@ const Color = enum {
     off,
 };
 
-pub fn main() void {
+test "enums " {
     const c1: Color = .auto;
     const c2: Color = .on;
     print("c1: {}\n", .{c1});
