@@ -5,12 +5,17 @@ test "print arrays" {
     // infer type
     const b = [_]u8{ 'w', 'o', 'r', 'l', 'd' };
 
-    std.debug.print("a.len: {d}", .{b.len});
-    std.debug.print("b.len: {d}", .{a.len});
+    std.debug.print("a.len: {d}\n", .{b.len});
+    std.debug.print("b.len: {d}\n", .{a.len});
 
     // slices
     const array = [_]i32{ 1, 2, 3, 4, 5 };
     const slice = array[0..3];
+
+    // to print an array
+    std.debug.print("array1: {any}\n", .{array});
+    // to print a string
+    std.debug.print("a: {s}\n", .{a});
 
     for (array) |val| {
         std.debug.print("array: {}\n", .{val});
