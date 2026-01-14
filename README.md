@@ -8,3 +8,5 @@ zig run
 
 build a zig file 
 `zig build-exe <zig-file>`
+
+
