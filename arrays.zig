@@ -25,3 +25,7 @@ test "print arrays" {
         std.debug.print("slice: {}\n", .{val});
     }
 }
+
+pub fn main() void {
+    std.log.info("run `zig test arrays`", .{});
+}
