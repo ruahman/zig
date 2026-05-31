@@ -5,12 +5,23 @@ const std = @import("std");
 const print = std.debug.print;
 
 test "test variables" {
+    const maxIterations : i32 = 10;
+    var counter : i32 = 0;
+
+    while(counter < maxIterations) {
+        // print decimal
+        print("iteration {d}\n", .{counter});
+        counter += 1;
+    }
+
+
     // const is imutable
     // if you dont use a variable that you declair zig will complain
     const number1: u8 = 5;
 
     // zig can infer the type
     const const_number = 55;
+
     // so zig doesn't complain about const_nuber not being used
     _ = const_number;
 
