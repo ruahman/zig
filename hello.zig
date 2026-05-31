@@ -1,5 +1,7 @@
+// standard library
 const std = @import("std");
 
+// function that return an i32
 fn sumOfTwo(a: i32, b: i32) i32 {
     return a + b;
 }
@@ -12,8 +14,4 @@ test "hello" {
     // zig does not have a string type
     const string: []const u8 = "diego vila";
     std.debug.print("hello {s} {} {} {} {s}\n", .{ "world", res, v, infer, string });
-}
-
-pub fn main() void {
-    std.debug.print("run test `zig test hello.zig`", .{});
 }

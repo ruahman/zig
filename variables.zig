@@ -1,5 +1,7 @@
+// standard library
 const std = @import("std");
 
+// just get the print library
 const print = std.debug.print;
 
 test "test variables" {
@@ -49,6 +51,10 @@ test "test variables" {
     const CustomType = u8;
     const test_cust: CustomType = 8;
     std.debug.print("CustomType: {}\n", .{test_cust});
+}
+
+test "foo" {
+    print("hello foo", .{});
 }
 
 pub fn main() void {
