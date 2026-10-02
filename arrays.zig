@@ -1,4 +1,5 @@
 const std = @import("std");
+
 test "print arrays" {
     const a = [5]u8{ 'h', 'e', 'l', 'l', 'o' };
 

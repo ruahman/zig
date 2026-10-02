@@ -9,4 +9,5 @@ test "hello world" {
 pub fn main() void {
     // second parameter is a tuple
     std.debug.print("Hello, {s}!\n", .{"world"});
+    std.debug.print("Hello, {s}!\n", .{"World"});
 }
