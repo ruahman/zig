@@ -3,8 +3,8 @@
 //!
 
 const std = @import("std");
-const expect = std.testing.expect;
 const hellow = @import("./import_func.zig").hellow;
+const expect = @import("std").testing.expect;
 
 const print = std.debug.print;
 
@@ -78,7 +78,22 @@ test "test functions" {
     hellow();
 }
 
-pub fn main() void {
-    print("this program shows how functions work in zig\n", .{});
-    print("to see the tests for functions run `zig test functions.zig`\n", .{});
+fn addFive(x: u32) u32 {
+    return x + 5;
+}
+
+test "function 1" {
+    const y = addFive(0);
+    try expect(@TypeOf(y) == u32);
+    try expect(y == 5);
+}
+
+fn fibonacci(n: u16) u16 {
+    if (n == 0 or n == 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+test "function recursion" {
+    const x = fibonacci(10);
+    try expect(x == 55);
 }
