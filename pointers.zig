@@ -10,15 +10,20 @@ fn incrementNumber(input: *u8) void {
 const Point = struct { x: u8, y: u8 };
 
 test "adddress syntax" {
+    // create pointer
     const x: i32 = 1234;
     const x_ptr = &x;
     try expect(x_ptr.* == 1234);
     try expect(@TypeOf(x_ptr) == *const i32);
+
+    // update pointer
     var y: i32 = 5678;
     const y_ptr = &y;
     try expect(@TypeOf(y_ptr) == *i32);
     y_ptr.* += 1;
     try expect(y_ptr.* == 5679);
+
+    // address
     var number1: u8 = 153;
     const number1_ptr: *u8 = &number1;
     const number1_ptr_address: usize = @intFromPtr(number1_ptr);
@@ -26,12 +31,17 @@ test "adddress syntax" {
     print("number1_ptr: {}\n", .{number1_ptr.*});
     print("number1_ptr_address: {}\n", .{number1_ptr_address});
 
+    // pass in pointer
     incrementNumber(&number1);
+    try expect(number1 == 154);
+    incrementNumber(number1_ptr);
+    try expect(number1_ptr.* == 155);
     print("number1 after increment: {}\n", .{number1});
 
     // to point to a const variable you need a const pointer type
     // but the pointer varaible can be mutalbe
     const number2: u8 = 100;
+    // constant pointer
     const number2_ptr: *const u8 = &number2;
     print("number2_ptr: {}", .{number2_ptr.*});
     print("type of number1_ptr: {}\n", .{@TypeOf(number1_ptr)});
@@ -42,7 +52,7 @@ test "adddress syntax" {
     const origin_ptr: *const Point = &origin;
     print("origin: ({},{})\n", .{ origin_ptr.*.x, origin_ptr.x });
 
-    // array pointers
+    // same with array pointers
     var arr1 = [6]u8{ 3, 1, 4, 1, 5, 9 };
     const arr1_ptr: [*]u8 = &arr1;
     const arr2 = [_]u8{ 1, 2, 3 };
@@ -53,6 +63,7 @@ test "adddress syntax" {
 
 test "array access" {
     var array = [_]u8{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    // pointer to element
     const ptr = &array[2];
     try expect(@TypeOf(ptr) == *u8);
     ptr.* += 1;
